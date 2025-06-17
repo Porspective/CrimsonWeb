@@ -13,11 +13,11 @@ interface PortfolioItem {
 const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
-    title: "Modern Horse Sales",
-    description: "A sophisticated platform showcasing premium horses with detailed listings and gallery.",
-    image: "horse.jpeg",
-    category: "Equestrian",
-    link: "https://cr-horses.com/#"
+    title: "Crimson Landscaping",
+    description: "Complete landscaping solutions including design, installation, and maintenance services.",
+    image: "crimland.jpeg",
+    category: "Landscaping",
+    link: "https://crimson-landscaping.com"
   },
   {
     id: 2,
@@ -29,19 +29,19 @@ const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 3,
+    title: "Modern Horse Sales",
+    description: "A sophisticated platform showcasing premium horses with detailed listings and gallery.",
+    image: "horse.jpeg",
+    category: "Equestrian",
+    link: "https://cr-horses.com/#"
+  },
+  {
+    id: 4,
     title: "Crimson Clean",
     description: "Professional pressure washing services for residential and commercial properties in Norman.",
     image: "pressure.jpeg",
     category: "Cleaning Services",
     link: "https://crimson-clean.com/"
-  },
-  {
-    id: 4,
-    title: "Crimson Landscaping",
-    description: "Complete landscaping solutions including design, installation, and maintenance services.",
-    image: "crimland.jpeg",
-    category: "Landscaping",
-    link: "https://crimson-landscaping.com"
   }
 ];
 
