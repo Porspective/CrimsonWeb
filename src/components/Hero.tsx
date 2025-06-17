@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
                 <img 
                   src="./crimland.jpeg" 
                   alt="Crimson Landscaping - Professional landscaping services" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
