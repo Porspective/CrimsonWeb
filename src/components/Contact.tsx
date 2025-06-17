@@ -1,13 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Check } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    from_name: '',
-    reply_to: '',
-    phone_number: '',
+    name: '',
+    email: '',
+    phone: '',
     message: '',
   });
   
@@ -29,25 +27,30 @@ const Contact: React.FC = () => {
     setError('');
 
     try {
-      await emailjs.sendForm(
-        'service_umbrnqv',
-        'contact_us',
-        formRef.current!,
-        '_D4zTbe-K6sagegb5'
-      );
-
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        from_name: '',
-        reply_to: '',
-        phone_number: '',
-        message: '',
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+        
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (err) {
       setIsSubmitting(false);
       setError('Failed to send message. Please try again later.');
@@ -78,33 +81,33 @@ const Contact: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="from_name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                       Full Name
                     </label>
                     <input
                       type="text"
-                      id="from_name"
-                      name="from_name"
+                      id="name"
+                      name="name"
                       required
-                      value={formData.from_name}
+                      value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crimson focus:border-transparent"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="reply_to" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                       Email Address
                     </label>
                     <input
                       type="email"
-                      id="reply_to"
-                      name="reply_to"
+                      id="email"
+                      name="email"
                       required
-                      value={formData.reply_to}
+                      value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crimson focus:border-transparent"
                       placeholder="Your email"
@@ -113,14 +116,14 @@ const Contact: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                     Phone Number
                   </label>
                   <input
                     type="tel"
-                    id="phone_number"
-                    name="phone_number"
-                    value={formData.phone_number}
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crimson focus:border-transparent"
                     placeholder="Your phone (optional)"
