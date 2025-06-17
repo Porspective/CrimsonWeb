@@ -39,7 +39,13 @@ const Hero: React.FC = () => {
           </div>
           <div className="order-1 md:order-2 flex justify-center">
             <div className="w-full max-w-md bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-              <div className="h-48 bg-gradient-to-r from-crimson to-crimson-light"></div>
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="./crimland.jpeg" 
+                  alt="Crimson Landscaping - Professional landscaping services" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Looking for a better website?</h3>
                 <p className="text-gray-600 mb-4">
