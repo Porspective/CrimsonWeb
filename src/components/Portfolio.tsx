@@ -34,6 +34,14 @@ const portfolioItems: PortfolioItem[] = [
     image: "pressure.jpeg",
     category: "Cleaning Services",
     link: "https://crimson-clean.com/"
+  },
+  {
+    id: 4,
+    title: "Crimson Landscaping",
+    description: "Complete landscaping solutions including design, installation, and maintenance services.",
+    image: "crimland.jpeg",
+    category: "Landscaping",
+    link: "https://crimson-landscaping.com"
   }
 ];
 
